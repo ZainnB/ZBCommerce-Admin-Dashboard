@@ -21,7 +21,6 @@ import { formatCurrency } from "@/utils/format";
 
 const productsStore = useProductsStore();
 
-// AG-Grid configuration
 const defaultColDef = {
   sortable: true,
   filter: true,
@@ -106,7 +105,6 @@ const columnDefs = [
   width: 100%;
 }
 
-/* AG-Grid custom styles */
 :deep(.ag-theme-alpine-dark) {
   --ag-background-color: rgba(0, 0, 0, 0.5);
   --ag-odd-row-background-color: rgba(255, 255, 255, 0.02);

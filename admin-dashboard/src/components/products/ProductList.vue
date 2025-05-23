@@ -73,13 +73,13 @@ import {
 
 const productsStore = useProductsStore();
 
-// Search and filter state
+
 const searchQuery = ref("");
 const selectedCategory = ref("");
 const sortField = ref("name");
 const sortDirection = ref("asc");
 
-// Event handlers
+
 const handleSearch = () => {
   productsStore.setSearchQuery(searchQuery.value);
 };
@@ -107,14 +107,14 @@ const resetFilters = () => {
   productsStore.setSorting("name", "asc");
 };
 
-// Product actions
+
 const editProduct = (product) => {
-  // This would typically navigate to an edit page or open a modal
+  
   console.log("Edit product:", product);
 };
 
 const viewProduct = (product) => {
-  // This would typically navigate to a product details page
+  
   console.log("View product:", product);
 };
 </script>

@@ -22,7 +22,9 @@ export const useProductsStore = defineStore("products", {
     },
 
     lowStockProducts: (state) => {
-      return state.products.filter((product) => product.stock < 10);
+      return state.products.filter(
+        (product) => product.stock < product.threshold
+      );
     },
 
     outOfStockProducts: (state) => {
@@ -51,24 +53,23 @@ export const useProductsStore = defineStore("products", {
         const matchesQuery = product.name
           .toLowerCase()
           .includes(state.searchQuery.toLowerCase());
-      
+
         const matchesCategory = state.filterCategory
           ? product.category === state.filterCategory
           : true;
-      
+
         let matchesStock = true;
         if (state.stockFilter === "low") {
-          matchesStock = product.stock < 10 && product.stock > 0;
+          matchesStock = product.stock < product.threshold && product.stock > 0;
         } else if (state.stockFilter === "out") {
           matchesStock = product.stock === 0;
         } else if (state.stockFilter === "in") {
           matchesStock = product.stock > 0;
         }
-      
+
         return matchesQuery && matchesCategory && matchesStock;
       });
-    }
-
+    },
   },
 
   actions: {
@@ -88,7 +89,7 @@ export const useProductsStore = defineStore("products", {
       this.isLoading = true;
 
       try {
-        // Simulated API call
+        
         await new Promise((resolve) => setTimeout(resolve, 500));
         return true;
       } catch (error) {
@@ -103,21 +104,21 @@ export const useProductsStore = defineStore("products", {
       this.isLoading = true;
 
       try {
-        // Generate a new ID
+        
         this.lastId++;
         const newId = `#${this.lastId.toString().padStart(5, "0")}`;
 
-        // Create the new product with the generated ID
+        
         const newProduct = {
           id: newId,
           ...product,
           createdAt: new Date().toISOString(),
         };
 
-        // In a real app, this would be an API call
-        await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate API delay
+        
+        await new Promise((resolve) => setTimeout(resolve, 800)); 
 
-        // Add the product to the state
+        
         this.products.unshift(newProduct);
 
         return { success: true, product: newProduct };
@@ -139,10 +140,10 @@ export const useProductsStore = defineStore("products", {
           throw new Error("Product not found");
         }
 
-        // In a real app, this would be an API call
-        await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate API delay
+        
+        await new Promise((resolve) => setTimeout(resolve, 800)); 
 
-        // Update the product
+        
         this.products[index] = {
           ...this.products[index],
           ...updates,
@@ -168,10 +169,10 @@ export const useProductsStore = defineStore("products", {
           throw new Error("Product not found");
         }
 
-        // In a real app, this would be an API call
-        await new Promise((resolve) => setTimeout(resolve, 800)); // Simulate API delay
+        
+        await new Promise((resolve) => setTimeout(resolve, 800)); 
 
-        // Remove the product
+        
         this.products.splice(index, 1);
 
         return { success: true };

@@ -1,15 +1,11 @@
-// This service handles file uploads for product images
-// It supports both local storage and Cloudinary
-
-// For Cloudinary uploads
-const CLOUDINARY_UPLOAD_PRESET = "your_upload_preset"; // Replace with your upload preset
-const CLOUDINARY_CLOUD_NAME = "your_cloud_name"; // Replace with your cloud name
+const CLOUDINARY_UPLOAD_PRESET = "your_upload_preset";
+const CLOUDINARY_CLOUD_NAME = "your_cloud_name"; 
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
 /**
  * Upload a file to Cloudinary
- * @param {File} file - The file to upload
- * @returns {Promise<string>} - The URL of the uploaded file
+ * @param {File} file 
+ * @returns {Promise<string>} 
  */
 export const uploadToCloudinary = async (file) => {
   try {

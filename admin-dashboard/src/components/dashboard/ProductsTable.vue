@@ -1,55 +1,59 @@
 <template>
-  <div class="products-table">
+  <div class="products-table-container">
     <div class="table-header">
       <div class="table-actions">
-        <button class="filter-btn">
+        <button class="action-btn">
           <filter-icon size="16" />
-          Filter By
+          Filter
         </button>
-        <button class="sort-btn">
+        <button class="action-btn">
           <sort-desc-icon size="16" />
-          Sort By: {{ sortBy }}
+          Sort: {{ sortBy }}
         </button>
       </div>
     </div>
-    <div class="table-container">
+
+    <div class="table-wrapper">
       <table>
         <thead>
           <tr>
-            <th>PRODUCT ID</th>
-            <th>IMAGE</th>
-            <th>PRODUCT NAME</th>
-            <th>PRICE</th>
-            <th>TOTAL SALES</th>
-            <th>STOCK</th>
-            <th>STATUS</th>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Sales</th>
+            <th>Stock</th>
+            <th>Status</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="product in products" :key="product.id">
-            <td class="product-id">{{ product.id }}</td>
-            <td class="product-image">
-              <img :src="product.image" :alt="product.name" />
+            <td>{{ product.id }}</td>
+            <td>
+              <img
+                class="product-img"
+                :src="product.image"
+                :alt="product.name"
+              />
             </td>
-            <td class="product-name">{{ product.name }}</td>
-            <td class="product-price">{{ formatCurrency(product.price) }}</td>
-            <td class="product-sales">{{ product.totalSales }}</td>
-            <td class="product-stock">{{ product.stock }}</td>
-            <td class="product-status">
-              <span :class="getStatusClass(product.status)">{{
-                product.status
-              }}</span>
+            <td>{{ product.name }}</td>
+            <td>{{ formatCurrency(product.price) }}</td>
+            <td>{{ product.totalSales }}</td>
+            <td>{{ product.stock }}</td>
+            <td>
+              <span :class="getStatusClass(product.status)">
+                {{ product.status }}
+              </span>
             </td>
-            <td class="product-actions">
-              <button class="action-btn">
-                <more-vertical-icon size="16" />
-              </button>
+            <td>
+              <button class="menu-btn"><more-vertical-icon size="16" /></button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
+
     <div class="table-footer">
       <button class="view-all-btn" @click="emit('view-all')">
         View All Products
@@ -67,6 +71,13 @@ import {
   MoreVertical as MoreVerticalIcon,
 } from "lucide-vue-next";
 
+defineProps({
+  products: {
+    type: Array,
+    required: true,
+  },
+});
+
 const emit = defineEmits(["view-all"]);
 
 const sortBy = ref("Relevance");
@@ -74,22 +85,25 @@ const sortBy = ref("Relevance");
 const getStatusClass = (status) => {
   switch (status) {
     case "In Stock":
-      return "status-in-stock";
+      return "status-badge in-stock";
     case "Out of Stock":
-      return "status-out-of-stock";
+      return "status-badge out-stock";
     case "Restock":
-      return "status-restock";
+      return "status-badge restock";
     default:
-      return "";
+      return "status-badge";
   }
 };
 </script>
 
 <style scoped>
-.products-table {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.products-table-container {
+  background: rgba(18, 18, 18, 0.95);
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(10px);
+  color: #e0e0e0;
 }
 
 .table-header {
@@ -103,113 +117,95 @@ const getStatusClass = (status) => {
   gap: 12px;
 }
 
-.filter-btn,
-.sort-btn {
+.action-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  background-color: #333;
-  border: none;
-  color: #e0e0e0;
-  padding: 8px 16px;
-  border-radius: 4px;
+  background-color: #1f1f1f;
+  border: 1px solid #2d2d2d;
+  color: #f0f0f0;
+  padding: 8px 14px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 13px;
+  transition: 0.2s;
 }
 
-.table-container {
-  flex: 1;
+.action-btn:hover {
+  background-color: #2a2a2a;
+}
+
+.table-wrapper {
   overflow-x: auto;
+  border-radius: 12px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 thead th {
   text-align: left;
-  padding: 12px 16px;
+  padding: 14px 16px;
+  background: #1e1e1e;
   font-size: 12px;
-  font-weight: 500;
-  color: #a0a0a0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  color: #b0b0b0;
+  border-bottom: 1px solid #333;
 }
 
 tbody td {
   padding: 16px;
   font-size: 14px;
-  color: #e0e0e0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid #2a2a2a;
 }
 
-.product-id {
-  color: #a0a0a0;
-}
-
-.product-image {
-  width: 40px;
-}
-
-.product-image img {
+.product-img {
   width: 40px;
   height: 40px;
-  border-radius: 4px;
   object-fit: cover;
+  border-radius: 6px;
 }
 
-.product-name {
-  font-weight: 500;
-  color: #ffffff;
-}
-
-.product-price {
-  font-weight: 500;
-}
-
-.product-status span {
-  display: inline-block;
-  padding: 4px 8px;
-  border-radius: 4px;
+.status-badge {
+  padding: 4px 10px;
+  border-radius: 20px;
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
+  display: inline-block;
+  text-align: center;
 }
 
-.status-in-stock {
-  background-color: rgba(74, 222, 128, 0.1);
+.in-stock {
+  background: rgba(74, 222, 128, 0.15);
   color: #4ade80;
 }
 
-.status-out-of-stock {
-  background-color: rgba(248, 113, 113, 0.1);
+.out-stock {
+  background: rgba(248, 113, 113, 0.15);
   color: #f87171;
 }
 
-.status-restock {
-  background-color: rgba(250, 204, 21, 0.1);
+.restock {
+  background: rgba(250, 204, 21, 0.15);
   color: #facc15;
 }
 
-.product-actions {
-  text-align: right;
-}
-
-.action-btn {
-  background: transparent;
+.menu-btn {
+  background: none;
   border: none;
   color: #a0a0a0;
   cursor: pointer;
-  width: 32px;
-  height: 32px;
   border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 4px;
+  transition: 0.2s;
 }
 
-.action-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #ffffff;
+.menu-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .table-footer {
@@ -220,17 +216,18 @@ tbody td {
 
 .view-all-btn {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #e0e0e0;
-  padding: 8px 16px;
-  border-radius: 4px;
+  padding: 10px 20px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
-  transition: all 0.2s;
+  transition: all 0.3s;
 }
 
 .view-all-btn:hover {
   background-color: rgba(255, 255, 255, 0.05);
   color: #ffffff;
+  border-color: #ffffff;
 }
 </style>

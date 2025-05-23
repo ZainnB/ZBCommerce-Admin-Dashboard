@@ -1,6 +1,6 @@
 import { reactive } from "vue";
 
-// Toast state
+
 const toast = reactive({
   visible: false,
   type: "info",
@@ -11,19 +11,10 @@ const toast = reactive({
   timeout: null,
 });
 
-// Default duration for toasts
+
 const DEFAULT_DURATION = 5000;
 
-/**
- * Show a toast notification
- * @param {Object} options - Toast options
- * @param {string} options.type - Toast type (success, error, info, warning)
- * @param {string} options.title - Toast title
- * @param {string} options.message - Toast message
- * @param {string} options.actionText - Text for the action button
- * @param {Function} options.actionCallback - Callback for the action button
- * @param {number} options.duration - Duration in milliseconds
- */
+
 export const showToast = ({
   type = "info",
   title = "",
@@ -32,12 +23,12 @@ export const showToast = ({
   actionCallback = null,
   duration = DEFAULT_DURATION,
 }) => {
-  // Clear any existing timeout
+  
   if (toast.timeout) {
     clearTimeout(toast.timeout);
   }
 
-  // Update toast state
+  
   Object.assign(toast, {
     visible: true,
     type,
@@ -47,7 +38,7 @@ export const showToast = ({
     actionCallback,
   });
 
-  // Set timeout to hide the toast
+  
   if (duration > 0) {
     toast.timeout = setTimeout(() => {
       hideToast();
@@ -55,9 +46,7 @@ export const showToast = ({
   }
 };
 
-/**
- * Hide the toast notification
- */
+
 export const hideToast = () => {
   toast.visible = false;
 
@@ -67,9 +56,7 @@ export const hideToast = () => {
   }
 };
 
-/**
- * Handle the action button click
- */
+
 export const handleToastAction = () => {
   if (toast.actionCallback) {
     toast.actionCallback();
@@ -77,7 +64,7 @@ export const handleToastAction = () => {
   hideToast();
 };
 
-// Convenience methods for different toast types
+
 export const showSuccessToast = (message, options = {}) => {
   showToast({ type: "success", message, ...options });
 };
@@ -94,7 +81,7 @@ export const showWarningToast = (message, options = {}) => {
   showToast({ type: "warning", message, ...options });
 };
 
-// Export the toast state and methods
+
 export const useToast = () => {
   return {
     toast,

@@ -60,58 +60,54 @@ export const salesAnalytics = {
   },
 };
 
-// Returns data
 export const returnsData = {
   labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
   values: [35, 28, 32, 45, 30, 38],
   percentages: [12, 9, 11, 15, 10, 13],
 };
 
-// Best selling products
 export const bestSellingProducts = [
   {
-    id: "#12598",
-    image: "https://via.placeholder.com/40",
-    name: "Off-white shoulder wide sleeve top",
-    price: 4099,
-    totalSales: 48,
-    stock: 25,
+    id: "P004",
+    image: "https://affinity.com.pk/cdn/shop/files/IMG-7088.webp?v=1698072889",
+    name: "Nike Air Max 270",
+    category: "Footwear",
+    price: 25000,
+    totalSales: 54,
+    stock: 24,
     status: "In Stock",
   },
   {
-    id: "#20587",
-    image: "https://via.placeholder.com/40",
-    name: "Green Velvet semi-sleeve top",
-    price: 10000,
-    totalSales: 76,
-    stock: 0,
-    status: "Out of Stock",
-  },
-  {
-    id: "#10020",
-    image: "https://via.placeholder.com/40",
-    name: "Nike air max 2099",
-    price: 17500,
+    id: "P005",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqE1ZfRFbjmrLXQcqIdTXv3q0KCDt7bO041w&s",
+    name: "Levi's 501 Original Jeans",
+    category: "Clothing",
+    price: 12000,
     totalSales: 32,
-    stock: 3,
-    status: "Restock",
-  },
-  {
-    id: "#15789",
-    image: "https://via.placeholder.com/40",
-    name: "Leather crossbody bag",
-    price: 8500,
-    totalSales: 41,
-    stock: 12,
+    stock: 56,
     status: "In Stock",
   },
   {
-    id: "#18234",
-    image: "https://via.placeholder.com/40",
-    name: "Wireless Bluetooth earbuds",
-    price: 6000,
-    totalSales: 65,
-    stock: 8,
+    id: "P006",
+    image:
+      "https://aspire.pk/cdn/shop/files/1H5A4850copy.jpgsacopy.jpgsa.jpg?v=1697369350",
+    name: "Adidas Originals T-Shirt",
+    category: "Clothing",
+    price: 5500,
+    stock: 78,
+    totalSales: 28,
+    status: "In Stock",
+  },
+  {
+    id: "P007",
+    image:
+      "https://discountstore.pk/cdn/shop/files/e65cdbb7-7c1b-46fa-9397-6e24fbc3e37a.webp?v=1732003360",
+    name: "Kindle Paperwhite",
+    category: "Electronics",
+    price: 30000,
+    stock: 12,
+    totalSales: 40,
     status: "In Stock",
   },
 ];

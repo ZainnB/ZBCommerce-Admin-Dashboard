@@ -1,7 +1,6 @@
 <template>
   <div class="revenue-analysis">
     <div class="page-header">
-      <h2>Revenue Analysis</h2>
       <div class="header-actions">
         <button
           class="refresh-btn"
@@ -227,17 +226,14 @@ import { RefreshCw as RefreshCwIcon } from "lucide-vue-next";
 const salesStore = useSalesStore();
 const selectedTimeframe = ref("monthly");
 
-// Fetch data on component mount
 onMounted(async () => {
   await salesStore.fetchSalesData();
 });
 
-// Watch for timeframe changes
 watch(selectedTimeframe, (newValue) => {
   salesStore.setTimeframe(newValue);
 });
 
-// Calculate marketplace percentages
 const getMarketplacePercentage = (marketplace) => {
   const total = Object.values(salesStore.salesByMarketplace).reduce(
     (sum, val) => sum + val,
@@ -248,7 +244,6 @@ const getMarketplacePercentage = (marketplace) => {
   );
 };
 
-// Refresh data
 const refreshData = async () => {
   await salesStore.fetchSalesData();
 };

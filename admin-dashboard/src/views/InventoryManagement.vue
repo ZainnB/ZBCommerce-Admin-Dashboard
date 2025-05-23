@@ -2,7 +2,6 @@
   <div class="inventory-page">
     <div class="page-header">
       <div class="header-content">
-        <h2>Inventory Management</h2>
         <p class="subtitle">Manage your product inventory and stock levels</p>
       </div>
       <div class="header-actions">
@@ -223,6 +222,7 @@ const onStockFilterChange = () => {
     showLowStockOnly.value = false;
   } else if (stockFilter.value === "low") {
     showLowStockOnly.value = true;
+    productsStore.setStockFilter("low");
   } else if (stockFilter.value === "out") {
     showLowStockOnly.value = false;
     productsStore.setStockFilter("out");
@@ -293,27 +293,6 @@ watch(showLowStockOnly, (newValue) => {
 
 .header-content {
   position: relative;
-}
-
-.page-header h2 {
-  font-size: 32px;
-  font-weight: 700;
-  color: #ffffff;
-  margin: 0;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  position: relative;
-}
-
-.page-header h2::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(90deg, #60a5fa, #4ade80);
-  border-radius: 3px;
 }
 
 .subtitle {

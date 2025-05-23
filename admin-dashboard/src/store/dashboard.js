@@ -31,9 +31,7 @@ export const useDashboardStore = defineStore("dashboard", {
       this.isLoading = true;
 
       try {
-        // In a real app, this would be an API call
-        // For now, we're just using our static data
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API delay
+        await new Promise((resolve) => setTimeout(resolve, 500)); 
         return true;
       } catch (error) {
         console.error("Error fetching dashboard data:", error);

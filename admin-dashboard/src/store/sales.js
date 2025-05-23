@@ -48,7 +48,7 @@ export const useSalesStore = defineStore("sales", {
     filteredSalesData: (state) => {
       const data = state.currentSalesData;
 
-      // If all categories are selected, return the full data
+      
       if (
         state.selectedCategories.length ===
         Object.keys(state.salesByCategory).length
@@ -56,7 +56,7 @@ export const useSalesStore = defineStore("sales", {
         return data;
       }
 
-      // Otherwise, adjust the values based on selected categories
+      
       const totalRevenue = Object.values(state.salesByCategory).reduce(
         (sum, val) => sum + val,
         0
@@ -136,9 +136,9 @@ export const useSalesStore = defineStore("sales", {
       this.isLoading = true;
 
       try {
-        // In a real app, this would be an API call
-        // For now, we're just using our static data
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API delay
+        
+        
+        await new Promise((resolve) => setTimeout(resolve, 500)); 
         return true;
       } catch (error) {
         console.error("Error fetching sales data:", error);

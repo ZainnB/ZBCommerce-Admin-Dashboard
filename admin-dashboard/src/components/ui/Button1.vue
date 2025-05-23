@@ -96,7 +96,6 @@ defineEmits(["click"]);
   cursor: not-allowed;
 }
 
-/* Button sizes */
 .btn-sm {
   padding: 6px 12px;
   font-size: 12px;
@@ -112,7 +111,6 @@ defineEmits(["click"]);
   font-size: 16px;
 }
 
-/* Button variants */
 .btn-primary {
   background-color: #60a5fa;
   color: #ffffff;

@@ -1,4 +1,4 @@
-// Helper function to generate random sales data
+
 const generateDailySales = (days, minSale, maxSale) => {
   return Array.from(
     { length: days },
@@ -6,7 +6,6 @@ const generateDailySales = (days, minSale, maxSale) => {
   );
 };
 
-// Generate dates for the last 30 days
 const generateDates = (days) => {
   const dates = [];
   const today = new Date();
@@ -14,13 +13,12 @@ const generateDates = (days) => {
   for (let i = days - 1; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    dates.push(date.toISOString().split("T")[0]); // Format as YYYY-MM-DD
+    dates.push(date.toISOString().split("T")[0]); 
   }
 
   return dates;
 };
 
-// Daily sales data for the last 30 days
 export const dailySales = {
   dates: generateDates(30),
   revenue: generateDailySales(30, 150000, 450000),
@@ -28,7 +26,6 @@ export const dailySales = {
   units: generateDailySales(30, 120, 400),
 };
 
-// Weekly sales data for the last 12 weeks
 export const weeklySales = {
   labels: Array.from({ length: 12 }, (_, i) => `Week ${i + 1}`),
   revenue: generateDailySales(12, 1000000, 3000000),
@@ -36,7 +33,6 @@ export const weeklySales = {
   units: generateDailySales(12, 800, 2500),
 };
 
-// Monthly sales data for the last 12 months
 export const monthlySales = {
   labels: [
     "Jan",
@@ -64,7 +60,6 @@ export const monthlySales = {
   ],
 };
 
-// Yearly sales data for the last 5 years
 export const yearlySales = {
   labels: ["2019", "2020", "2021", "2022", "2023"],
   revenue: [32000000, 38000000, 42000000, 48000000, 54000000],
@@ -72,7 +67,6 @@ export const yearlySales = {
   units: [30000, 36000, 40000, 46000, 52000],
 };
 
-// Sales by category
 export const salesByCategory = {
   Electronics: 25000000,
   Clothing: 18000000,
@@ -83,27 +77,23 @@ export const salesByCategory = {
   Books: 4000000,
 };
 
-// Sales by marketplace
 export const salesByMarketplace = {
   Amazon: 52000000,
   Walmart: 36000000,
 };
 
-// Today's summary stats
 export const todaySummary = {
   revenue: 350000,
   orders: 156,
   averageOrderValue: 2243,
 };
 
-// This month's summary stats
 export const monthSummary = {
   revenue: 8500000,
   orders: 3850,
   averageOrderValue: 2207,
 };
 
-// Year to date summary
 export const yearSummary = {
   revenue: 54000000,
   orders: 32000,

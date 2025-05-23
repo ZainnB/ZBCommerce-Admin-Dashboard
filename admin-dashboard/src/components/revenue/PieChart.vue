@@ -34,13 +34,13 @@ const chartContainer = ref(null);
 let chart = null;
 
 const colors = [
-  "#4ade80", // Green
-  "#60a5fa", // Blue
-  "#f472b6", // Pink
-  "#facc15", // Yellow
-  "#a78bfa", // Purple
-  "#fb923c", // Orange
-  "#94a3b8", // Gray
+  "#4ade80", 
+  "#60a5fa", 
+  "#f472b6", 
+  "#facc15", 
+  "#a78bfa", 
+  "#fb923c", 
+  "#94a3b8", 
 ];
 
 const createChart = () => {
@@ -52,7 +52,7 @@ const createChart = () => {
 
   const ctx = chartCanvas.value.getContext("2d");
 
-  // Convert data object to arrays
+  
   const labels = Object.keys(props.data);
   const values = Object.values(props.data);
 

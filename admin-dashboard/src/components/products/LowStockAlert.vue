@@ -5,7 +5,6 @@
       >{{ lowStockProducts.length }} products are low in stock and need
       attention.</span
     >
-    <button @click="$emit('view-low-stock')">View Low Stock Products</button>
   </div>
 </template>
 
@@ -19,8 +18,6 @@ const productsStore = useProductsStore();
 const lowStockProducts = computed(() => {
   return productsStore.lowStockProducts;
 });
-
-defineEmits(["view-low-stock"]);
 </script>
 
 <style scoped>

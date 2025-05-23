@@ -22,11 +22,6 @@ const routes = [
     name: "Product Registration",
     component: () => import("@/views/ProductRegistration.vue"),
   },
-  {
-    path: "/settings",
-    name: "Settings",
-    component: () => import("@/views/Settings1.vue"),
-  },
 ];
 
 const router = createRouter({
