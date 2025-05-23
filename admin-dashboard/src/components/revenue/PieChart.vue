@@ -76,7 +76,7 @@ const createChart = () => {
         legend: {
           position: "right",
           labels: {
-            color: "#e0e0e0",
+            color: "#121212",
             padding: 20,
             font: {
               size: 12,
@@ -96,6 +96,9 @@ const createChart = () => {
                   return {
                     text: `${label} (${percentage})`,
                     fillStyle: data.datasets[0].backgroundColor[i],
+                    fontColor: "#ffffff",
+                    strokeStyle: "#121212",
+                    lineWidth: 2,
                     hidden: false,
                     index: i,
                   };
