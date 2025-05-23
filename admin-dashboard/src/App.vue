@@ -1,13 +1,14 @@
 <template>
   <div class="app">
-    <sidebar />
+    <Sidebar />
     <div class="main-content">
-      <navbar />
-      <div class="page-content">
-        <ToastProvider>
+      <Navbar />
+      <ToastProvider>
+        <div class="page-content">
           <router-view />
-        </ToastProvider>
-      </div>
+        </div>
+        <Footer />
+      </ToastProvider>
     </div>
   </div>
 </template>
@@ -15,6 +16,7 @@
 <script setup>
 import Sidebar from "@/components/layout/SideBar.vue";
 import Navbar from "@/components/layout/NavBar.vue";
+import Footer from "@/components/layout/FooterBar.vue";
 import ToastProvider from "@/components/ToastProvider.vue";
 </script>
 
@@ -50,13 +52,14 @@ body {
   background: linear-gradient(
     135deg,
     rgba(0, 128, 128, 0.2) 0%,
-    rgba(0, 0, 64, 0.2) 100%
+    rgba(0, 0, 64, 0.2) 120%
   );
 }
 
 .page-content {
   flex: 1;
   overflow-y: auto;
+  padding-bottom: 2rem;
 }
 
 @media (max-width: 768px) {

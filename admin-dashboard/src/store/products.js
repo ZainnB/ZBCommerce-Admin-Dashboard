@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import { products as initialProducts } from "@/data/products";
+import { categories as categories } from "@/data/products";
 
 export const useProductsStore = defineStore("products", {
   state: () => ({
@@ -9,6 +10,10 @@ export const useProductsStore = defineStore("products", {
       ...initialProducts.map((p) => parseInt(p.id.replace("#", ""))),
       0
     ),
+    searchQuery: "",
+    filterCategory: "",
+    categories: [...categories],
+    stockFilter: "",
   }),
 
   getters: {
@@ -41,16 +46,50 @@ export const useProductsStore = defineStore("products", {
         0
       );
     },
+    filteredProducts: (state) => {
+      return state.products.filter((product) => {
+        const matchesQuery = product.name
+          .toLowerCase()
+          .includes(state.searchQuery.toLowerCase());
+      
+        const matchesCategory = state.filterCategory
+          ? product.category === state.filterCategory
+          : true;
+      
+        let matchesStock = true;
+        if (state.stockFilter === "low") {
+          matchesStock = product.stock < 10 && product.stock > 0;
+        } else if (state.stockFilter === "out") {
+          matchesStock = product.stock === 0;
+        } else if (state.stockFilter === "in") {
+          matchesStock = product.stock > 0;
+        }
+      
+        return matchesQuery && matchesCategory && matchesStock;
+      });
+    }
+
   },
 
   actions: {
+    setSearchQuery(query) {
+      this.searchQuery = query;
+    },
+
+    setFilterCategory(category) {
+      this.filterCategory = category;
+    },
+
+    setStockFilter(stock) {
+      this.stockFilter = stock;
+    },
+
     async fetchProducts() {
       this.isLoading = true;
 
       try {
-        // In a real app, this would be an API call
-        // For now, we're just using our static data
-        await new Promise((resolve) => setTimeout(resolve, 500)); // Simulate API delay
+        // Simulated API call
+        await new Promise((resolve) => setTimeout(resolve, 500));
         return true;
       } catch (error) {
         console.error("Error fetching products:", error);

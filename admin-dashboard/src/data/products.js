@@ -15,12 +15,13 @@ export const products = [
   },
   {
     id: "P002",
-    name: "https://regen.pk/cdn/shop/products/REGEN-iPhone14ProMax-Frontback-DeepPurple-Pakistan_1_cf318a55-4d9c-49bc-890c-f481de0a1bbe.png?v=1681907898&width=1946",
+    name: "iPhone 14 Pro Max",
     category: "Electronics",
     price: 399999,
     stock: 32,
     threshold: 8,
-    image: "https://images.app.goo.gl/eP7jRHfF9XwLcS2r9",
+    image:
+      "https://regen.pk/cdn/shop/products/REGEN-iPhone14ProMax-Frontback-DeepPurple-Pakistan_1_cf318a55-4d9c-49bc-890c-f481de0a1bbe.png?v=1681907898&width=1946",
     description: "Apple flagship phone with A16 Bionic chip",
     vendor: "Apple",
     marketplace: "Amazon",

@@ -82,9 +82,7 @@ const dashboardStore = useDashboardStore();
 const selectedTimeframe = ref("monthly");
 
 onMounted(async () => {
-  console.log("Dashboard component mounted");
   await dashboardStore.fetchDashboardData();
-  console.log("Dashboard data fetched", dashboardStore.dashboardData);
 });
 </script>
 

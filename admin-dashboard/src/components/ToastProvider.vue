@@ -1,13 +1,16 @@
 <template>
-  <Toast
-    :visible="toast.visible"
-    :type="toast.type"
-    :title="toast.title"
-    :message="toast.message"
-    :action-text="toast.actionText"
-    @close="hideToast"
-    @action="handleToastAction"
-  />
+  <div>
+    <Toast
+      :visible="toast.visible"
+      :type="toast.type"
+      :title="toast.title"
+      :message="toast.message"
+      :action-text="toast.actionText"
+      @close="hideToast"
+      @action="handleToastAction"
+    />
+    <slot />
+  </div>
 </template>
 
 <script setup>

@@ -4,10 +4,13 @@
       <div class="footer-section">
         <div class="footer-logo">
           <span class="icon">📊</span>
-          <span class="text">Pixel Mags</span>
+          <span class="text">ZB Mart</span>
         </div>
         <p class="footer-description">
-          Admin dashboard for e-commerce management and analytics
+          ZB Mart is a powerful inventory management system designed to help you
+          manage your products, sales, and revenue efficiently. With advanced
+          analytics and user-friendly interface, ZB Mart is your ultimate
+          business companion.
         </p>
       </div>
 

@@ -30,8 +30,14 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL || "/"),
   routes,
 });
+
+console.log(
+  "[Router] Routes configured:",
+  routes.map((r) => r.path)
+);
+console.log("[Router] Base URL:", process.env.BASE_URL || "/");
 
 export default router;
