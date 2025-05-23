@@ -1,12 +1,7 @@
-const CLOUDINARY_UPLOAD_PRESET = "your_upload_preset";
-const CLOUDINARY_CLOUD_NAME = "your_cloud_name"; 
+const CLOUDINARY_CLOUD_NAME = process.env.VUE_APP_CLOUDINARY_CLOUD_NAME;
+const CLOUDINARY_UPLOAD_PRESET = process.env.VUE_APP_CLOUDINARY_UPLOAD_PRESET;
 const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
-/**
- * Upload a file to Cloudinary
- * @param {File} file 
- * @returns {Promise<string>} 
- */
 export const uploadToCloudinary = async (file) => {
   try {
     const formData = new FormData();
@@ -30,29 +25,11 @@ export const uploadToCloudinary = async (file) => {
   }
 };
 
-/**
- * Create a local URL for a file (for development)
- * @param {File} file - The file to create a URL for
- * @returns {string} - The local URL of the file
- */
 export const createLocalFileUrl = (file) => {
   return URL.createObjectURL(file);
 };
 
-/**
- * Upload a file (uses Cloudinary in production, local URL in development)
- * @param {File} file - The file to upload
- * @param {boolean} useCloudinary - Whether to use Cloudinary
- * @returns {Promise<string>} - The URL of the uploaded file
- */
 export const uploadFile = async (file, useCloudinary = false) => {
   if (!file) return null;
-
-  // For production, use Cloudinary
-  if (useCloudinary) {
-    return await uploadToCloudinary(file);
-  }
-
-  // For development, use local URL
-  return createLocalFileUrl(file);
+  return useCloudinary ? await uploadToCloudinary(file) : createLocalFileUrl(file);
 };
