@@ -73,12 +73,10 @@ import {
 
 const productsStore = useProductsStore();
 
-
 const searchQuery = ref("");
 const selectedCategory = ref("");
 const sortField = ref("name");
 const sortDirection = ref("asc");
-
 
 const handleSearch = () => {
   productsStore.setSearchQuery(searchQuery.value);
@@ -107,14 +105,11 @@ const resetFilters = () => {
   productsStore.setSorting("name", "asc");
 };
 
-
 const editProduct = (product) => {
-  
   console.log("Edit product:", product);
 };
 
 const viewProduct = (product) => {
-  
   console.log("View product:", product);
 };
 </script>

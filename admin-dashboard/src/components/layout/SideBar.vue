@@ -59,7 +59,6 @@
       </transition>
     </div>
 
-    
     <div
       class="mobile-overlay"
       v-if="isMobileOpen"
@@ -84,10 +83,7 @@ import {
   Layers as LayersIcon,
   Menu as MenuIcon,
   X as XIcon,
-  ChevronLeft as ChevronLeftIcon,
-  ChevronRight as ChevronRightIcon,
 } from "lucide-vue-next";
-
 
 const props = defineProps({
   isOpen: {
@@ -147,11 +143,6 @@ const menuItems = [
     icon: ShoppingCart,
   },
 ];
-
-
-const Chevron = computed(() => {
-  return props.isOpen ? ChevronLeftIcon : ChevronRightIcon;
-});
 </script>
 
 <style scoped>
@@ -170,7 +161,7 @@ const Chevron = computed(() => {
   display: flex;
   flex-direction: column;
   padding: 24px 16px;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); 
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 100;
   border-right: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
@@ -449,7 +440,6 @@ const Chevron = computed(() => {
   z-index: 99;
   backdrop-filter: blur(4px);
 }
-
 
 .fade-enter-active,
 .fade-leave-active {

@@ -31,7 +31,7 @@ export const useDashboardStore = defineStore("dashboard", {
       this.isLoading = true;
 
       try {
-        await new Promise((resolve) => setTimeout(resolve, 500)); 
+        await new Promise((resolve) => setTimeout(resolve, 500));
         return true;
       } catch (error) {
         console.error("Error fetching dashboard data:", error);

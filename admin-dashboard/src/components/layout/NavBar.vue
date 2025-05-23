@@ -33,15 +33,12 @@ import SearchBar from "@/components/ui/SearchBar.vue";
 const route = useRoute();
 const searchQuery = ref("");
 
-
 const pageTitles = {
   Dashboard: "Dashboard Overview",
   "Revenue Analysis": "Revenue Analysis",
   Products: "Products Management",
   "Add Product": "Add New Product",
-  
 };
-
 
 const pageTitle = computed(() => {
   return pageTitles[route.name] || route.name || "Dashboard";

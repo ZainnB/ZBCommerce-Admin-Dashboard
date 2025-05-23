@@ -481,7 +481,7 @@ const handleSubmit = async () => {
     let imageUrl = formData.imageUrl;
 
     if (formData.imageFile) {
-      const useCloudinary = process.env.NODE_ENV === 'production';
+      const useCloudinary = process.env.NODE_ENV === "production";
       imageUrl = await uploadFile(formData.imageFile, useCloudinary);
     }
 

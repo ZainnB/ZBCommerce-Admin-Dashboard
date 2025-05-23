@@ -1,4 +1,3 @@
-
 const generateDailySales = (days, minSale, maxSale) => {
   return Array.from(
     { length: days },
@@ -13,7 +12,7 @@ const generateDates = (days) => {
   for (let i = days - 1; i >= 0; i--) {
     const date = new Date(today);
     date.setDate(today.getDate() - i);
-    dates.push(date.toISOString().split("T")[0]); 
+    dates.push(date.toISOString().split("T")[0]);
   }
 
   return dates;

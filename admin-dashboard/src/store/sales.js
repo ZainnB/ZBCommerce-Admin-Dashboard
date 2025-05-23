@@ -48,7 +48,6 @@ export const useSalesStore = defineStore("sales", {
     filteredSalesData: (state) => {
       const data = state.currentSalesData;
 
-      
       if (
         state.selectedCategories.length ===
         Object.keys(state.salesByCategory).length
@@ -56,7 +55,6 @@ export const useSalesStore = defineStore("sales", {
         return data;
       }
 
-      
       const totalRevenue = Object.values(state.salesByCategory).reduce(
         (sum, val) => sum + val,
         0
@@ -136,9 +134,7 @@ export const useSalesStore = defineStore("sales", {
       this.isLoading = true;
 
       try {
-        
-        
-        await new Promise((resolve) => setTimeout(resolve, 500)); 
+        await new Promise((resolve) => setTimeout(resolve, 500));
         return true;
       } catch (error) {
         console.error("Error fetching sales data:", error);

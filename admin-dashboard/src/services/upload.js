@@ -31,5 +31,7 @@ export const createLocalFileUrl = (file) => {
 
 export const uploadFile = async (file, useCloudinary = false) => {
   if (!file) return null;
-  return useCloudinary ? await uploadToCloudinary(file) : createLocalFileUrl(file);
+  return useCloudinary
+    ? await uploadToCloudinary(file)
+    : createLocalFileUrl(file);
 };

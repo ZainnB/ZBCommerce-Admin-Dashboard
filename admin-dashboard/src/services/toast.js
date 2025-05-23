@@ -1,6 +1,5 @@
 import { reactive } from "vue";
 
-
 const toast = reactive({
   visible: false,
   type: "info",
@@ -11,9 +10,7 @@ const toast = reactive({
   timeout: null,
 });
 
-
 const DEFAULT_DURATION = 5000;
-
 
 export const showToast = ({
   type = "info",
@@ -23,12 +20,10 @@ export const showToast = ({
   actionCallback = null,
   duration = DEFAULT_DURATION,
 }) => {
-  
   if (toast.timeout) {
     clearTimeout(toast.timeout);
   }
 
-  
   Object.assign(toast, {
     visible: true,
     type,
@@ -38,14 +33,12 @@ export const showToast = ({
     actionCallback,
   });
 
-  
   if (duration > 0) {
     toast.timeout = setTimeout(() => {
       hideToast();
     }, duration);
   }
 };
-
 
 export const hideToast = () => {
   toast.visible = false;
@@ -56,14 +49,12 @@ export const hideToast = () => {
   }
 };
 
-
 export const handleToastAction = () => {
   if (toast.actionCallback) {
     toast.actionCallback();
   }
   hideToast();
 };
-
 
 export const showSuccessToast = (message, options = {}) => {
   showToast({ type: "success", message, ...options });
@@ -80,7 +71,6 @@ export const showInfoToast = (message, options = {}) => {
 export const showWarningToast = (message, options = {}) => {
   showToast({ type: "warning", message, ...options });
 };
-
 
 export const useToast = () => {
   return {

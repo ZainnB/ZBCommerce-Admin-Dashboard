@@ -89,7 +89,6 @@ export const useProductsStore = defineStore("products", {
       this.isLoading = true;
 
       try {
-        
         await new Promise((resolve) => setTimeout(resolve, 500));
         return true;
       } catch (error) {
@@ -104,21 +103,17 @@ export const useProductsStore = defineStore("products", {
       this.isLoading = true;
 
       try {
-        
         this.lastId++;
         const newId = `#${this.lastId.toString().padStart(5, "0")}`;
 
-        
         const newProduct = {
           id: newId,
           ...product,
           createdAt: new Date().toISOString(),
         };
 
-        
-        await new Promise((resolve) => setTimeout(resolve, 800)); 
+        await new Promise((resolve) => setTimeout(resolve, 800));
 
-        
         this.products.unshift(newProduct);
 
         return { success: true, product: newProduct };
@@ -140,10 +135,8 @@ export const useProductsStore = defineStore("products", {
           throw new Error("Product not found");
         }
 
-        
-        await new Promise((resolve) => setTimeout(resolve, 800)); 
+        await new Promise((resolve) => setTimeout(resolve, 800));
 
-        
         this.products[index] = {
           ...this.products[index],
           ...updates,
@@ -169,10 +162,8 @@ export const useProductsStore = defineStore("products", {
           throw new Error("Product not found");
         }
 
-        
-        await new Promise((resolve) => setTimeout(resolve, 800)); 
+        await new Promise((resolve) => setTimeout(resolve, 800));
 
-        
         this.products.splice(index, 1);
 
         return { success: true };

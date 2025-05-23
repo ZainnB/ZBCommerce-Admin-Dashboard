@@ -65,12 +65,76 @@ const props = defineProps({
   },
   accept: {
     type: String,
-    default: "imageg, ".*"))) {
+    default: "image/*",
+  },
+  placeholder: {
+    type: String,
+    default: "Upload Image",
+  },
+  maxSize: {
+    type: Number,
+    default: 5 * 1024 * 1024,
+  },
+  disabled: {
+    type: Boolean,
+    default: false,
+  },
+  error: {
+    type: String,
+    default: "",
+  },
+});
+
+const emit = defineEmits(["update:modelValue", "update:preview", "error"]);
+
+const fileInput = ref(null);
+const isDragOver = ref(false);
+
+const fileType = computed(() => {
+  if (props.accept.includes("image")) {
+    return "image";
+  }
+  return "file";
+});
+
+const triggerFileInput = () => {
+  if (!props.disabled) {
+    fileInput.value.click();
+  }
+};
+
+const handleDragOver = () => {
+  if (props.disabled) return;
+  isDragOver.value = true;
+};
+
+const handleDragLeave = () => {
+  isDragOver.value = false;
+};
+
+const handleDrop = (event) => {
+  if (props.disabled) return;
+  isDragOver.value = false;
+
+  const files = event.dataTransfer.files;
+  if (files.length > 0) {
+    validateAndEmitFile(files[0]);
+  }
+};
+
+const handleFileChange = (event) => {
+  const files = event.target.files;
+  if (files.length > 0) {
+    validateAndEmitFile(files[0]);
+  }
+};
+
+const validateAndEmitFile = (file) => {
+  if (props.accept && !file.type.match(props.accept.replace(/\*/g, ".*"))) {
     emit("error", `Invalid file type. Please upload a ${props.accept} file.`);
     return;
   }
 
-  
   if (file.size > props.maxSize) {
     const maxSizeMB = props.maxSize / (1024 * 1024);
     emit("error", `File is too large. Maximum size is ${maxSizeMB}MB.`);
@@ -79,7 +143,6 @@ const props = defineProps({
 
   emit("update:modelValue", file);
 
-  
   if (file.type.startsWith("image/")) {
     const reader = new FileReader();
     reader.onload = (e) => {
